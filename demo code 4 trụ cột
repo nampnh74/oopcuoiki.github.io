@@ -1,0 +1,118 @@
+//Code demo thể hiện 4 trụ cột về lập trình hướng đối tượng trong PHP
+<?php
+
+abstract class ShopAoKhoac
+{
+    private $size; 
+    private $mausac;
+    private $giatien;
+    private $conon;
+
+    public function InPut($size, $mausac, $giatien, $conon)
+    {
+        $this->size = $size;
+        $this->mausac = $mausac;
+        $this->giatien = $giatien;
+        $this->conon = $conon;
+    }
+    public function InThongTin()
+    {
+        echo "Size cua ao la {$this->size} <br>" ;
+        echo "Mau sac cua ao la {$this->mausac} <br>" ;
+        echo "Gia tien cua ao la {$this->giatien} <br>" ;
+        echo "Ao nay la ao {$this->conon} <br>";
+    }
+};
+
+interface IAoGio
+{
+    public function dotranhnang();
+};
+
+class AoGio extends ShopAoKhoac
+{  
+    private $daykeo;
+    public function DayKeo($daykeo)
+    {
+        $this->daykeo = $daykeo;
+    }
+    public function InThongTin()
+    {
+      ShopAoKhoac :: InThongTin(); //toán tử phạm vi
+      echo "Loai day keo ao la loai  {$this->daykeo} <br>";
+    }
+    public function dotranhnang()
+    {
+        echo "Ao tranh nang <br>";
+    }
+};
+
+interface IAoHoodie
+{
+    public function giuAm();
+};
+
+class AoHoodie extends ShopAoKhoac
+{
+    private $doday;
+
+    public function Value($doday)
+    {
+        $this->doday = $doday;
+    }
+    public function InThongTin()
+    {
+        ShopAoKhoac::InThongTin();
+        echo "Ao nay day {$this->doday} <br>";
+    }
+    public function giuAm()
+    {
+        echo "Ao hoodie nay mac rat am <br>";
+    }
+};
+
+interface IAoLanh
+{
+    public function doam();
+};
+
+class AoLanh extends ShopAoKhoac 
+{
+    private $daykeo;
+    private $doday;
+    
+    public function Value( $daykeo, $doday)
+    {
+        $this->daykeo = $daykeo;
+        $this->doday = $doday;
+    }
+
+    public function InThongTin()
+    {
+        ShopAoKhoac ::InThongTin();
+        echo "Loai day keo ao la:  {$this->daykeo} <br>";
+        echo "Ao nay day {$this->doday} <br>";
+    }
+    
+    public function doam()
+    {
+        echo "Ao nay cua hang ABC <br>";
+    }
+};
+
+    $aoGio = new Aogio();
+    $aoGio->Input(45, "xanh", 200000, "co day");
+    $aoGio->Daykeo("co day");
+
+    echo $aoGio->InThongTin();
+    echo $aoGio->dotranhnang();
+
+    $aoHoodie = new AoHoodie();
+    $aoHoodie->InPut(40, "den", 350000, "khong day");
+    $aoHoodie->Value(5.6);
+
+    echo $aoHoodie->InThongTin();
+    echo $aoHoodie->giuAm();
+
+    //$shopaokhoac = new ShopAoKhoac(); tinh truu tuong
+?>
