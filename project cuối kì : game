@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./makecolor.css">
+    <title>object oriented programming</title>
+</head>
+<body>
+    <div class="header">
+        <p>LD: Le Minh Tai 20149058</p>
+        <p>Khamsavath bounmy 20110L02</p>
+        <p>Phan Nguyen Hoai Nam 20110080</p>
+    </div>
+    <div>
+        <?php
+        interface KetHop{
+            public function KetHopChieuThuc1();
+            public function KetHopChieuThuc2();
+        }
+        trait AoChoangVai{
+            protected $doBenGiap = 25;
+            public function Get_DoBenGiap()
+            {
+                return $this->doBenGiap;
+            }
+            public function Set_DoBenGiap($DoBenGiap)
+            {
+                $this->doBenGiap = $DoBenGiap;
+            }
+        }
+        trait AoDa{
+            protected $doBenGiap = 40 ;
+            public function Get_DoBenGiap()
+            {
+                return $this->doBenGiap;
+            }
+            public function Set_DoBenGiap($DoBenGiap)
+            {
+                $this->doBenGiap = $DoBenGiap;
+            }
+        }
+        trait AoLuoi{
+            protected $doBenGiap = 80;
+            public function Get_DoBenGiap()
+            {
+                return $this->doBenGiap;
+            }
+            public function Set_DoBenGiap($DoBenGiap)
+            {
+                $this->doBenGiap = $DoBenGiap;
+            }
+        }     
+        trait HuyetKiem{
+            protected $satThuong = 80;
+            public function KhatMau()
+            {
+                # code...
+            }
+            public function Get_SatThuong()
+            {
+                return $this->satThuong;
+            }
+            public function Set_SatThuong($satThuong)
+            {
+                $this->satThuong = $satThuong;
+            }
+        }
+        trait SongRiu{
+            protected $satThuong = 45;
+            public function NemVaChem()
+            {
+                # code...
+            }
+            public function Get_SatThuong()
+            {
+                return $this->satThuong;
+            }
+            public function Set_SatThuong($satThuong)
+            {
+                $this->satThuong = $satThuong;
+            }
+        }
+        trait BuaTa{
+            protected $satThuong =60;
+            public function LamChoang()
+            {
+            }
+            public function Get_SatThuong()
+            {
+                return $this->satThuong;
+            }
+            public function Set_SatThuong($satThuong)
+            {
+                $this->satThuong = $satThuong;
+            }
+        }
+        trait GayPhep{     
+            protected $satThuong = 60;
+            public function TangSucManh()
+            {
+            }
+            public function Get_SatThuong()
+            {
+                return $this->satThuong;
+            }
+            public function Set_SatThuong($satThuong)
+            {
+                $this->satThuong = $satThuong;
+            }
+        }
+        class NhanVat {
+            protected $diemKhaNang;
+            protected $phai;
+            protected $mau;
+            protected $cap;
+            protected $ten;
+            public function __construct($DiemKhaNang,$Phai,$Mau,$Cap,$Ten)
+            {
+                $this->diemKhaNang =$DiemKhaNang;
+                $this->phai=$Phai;
+                $this->mau=$Mau;
+                $this->cap=$Cap;
+                $this->ten=$Ten;
+            }
+            public function ThongTin()
+            {
+                echo "ten: {$this->ten} </br>";
+                echo "diem kha nang: {$this->diemKhaNang} </br>";
+                echo "phai: {$this->phai} </br>";
+                echo "mau: {$this->mau} </br>";
+                echo "cap: {$this->cap} </br>";
+
+            }
+            public function Get_phai()
+            {
+                return $this->phai;
+            }
+            public function Get_diemKhaNang()
+            {
+              return $this->diemKhaNang;
+            }
+            public function Get_mau()
+            {
+              return $this->mau;
+            }
+            public function Get_cap()
+            {
+              return $this->cap;
+            }
+            public function Get_ten()
+            {
+              return $this->ten;
+            }
+        }
+        class NguoiChoi{
+            public static function ThoatTroChoi()
+            {
+                echo "Da thoat tro choi </br>";
+            }
+            public static function XuatThongTinToanBoNguoiChoi($DanhSach)
+            {
+               foreach ($DanhSach as $key => $value){
+                echo "nguoi choi: $key </br>";
+                echo "ten: {$value->Get_ten()} </br>";
+                echo "diem kha nang: {$value->Get_diemKhaNang()} </br>";
+                echo "phai: {$value->Get_phai()} </br>";
+                echo "mau: {$value->Get_mau()} </br>";
+                echo "cap: {$value->Get_cap()} </br></br>";
+               }
+            }
+            public static function CapDo($Tuong)
+            {              
+                echo " cap do = {$Tuong->Get_cap()} </br>   ";
+            }
+            public static function DoiKhoa( $DanhSachNguoiChoi, $KhoaCu, $KhoaMoi ) {
+                $DanhSachKhoa = array_keys( $DanhSachNguoiChoi );
+                $DanhSachKhoa[ array_search( $KhoaCu, $DanhSachKhoa ) ] = $KhoaMoi;
+                return array_combine( $DanhSachKhoa, $DanhSachNguoiChoi );
+            }
+            public static function ThemNguoiChoi(&$DanhSachNguoiChoi,$Tuong,$KhoaMoi)
+            {
+                array_push($DanhSachNguoiChoi,$Tuong);
+                $DanhSachNguoiChoi = self::DoiKhoa($DanhSachNguoiChoi,array_key_last($DanhSachNguoiChoi),$KhoaMoi);
+            }
+        }
+        class CanChien extends NhanVat{}
+        class HoTro extends NhanVat{}
+        class SatThu extends CanChien implements KetHop{
+            use HuyetKiem;
+            use AoDa;
+            public function TraTan ()
+            {
+                echo "{$this->Get_ten()} tien hanh tra tan </br>";
+            }
+            public function HaDoc ()
+            {
+                echo "{$this->Get_ten()} tien hanh ha doc </br>";
+            }
+            public function AnThan ()
+            {
+                echo "{$this->Get_ten()} tien hanh an than </br>";
+            }
+            public function KetHopChieuThuc1(){
+                $this->AnThan();
+                $this->TraTan();
+            }
+            public function KetHopChieuThuc2(){
+                $this->AnThan();
+                $this->HaDoc();
+            }
+        }
+        class KyBinh extends CanChien{
+            use BuaTa;
+            use AoLuoi;
+             public function DonThanThanh ()
+            {
+                echo "{$this->Get_ten()} tien hanh don than thanh </br>";
+            }
+            public function ThanhTay ()
+            {
+                echo "{$this->Get_ten()} tien hanh thanh tay </br>";
+            }
+            public function HoaHinh ()
+            {
+                echo "{$this->Get_ten()} tien hanh hoa hinh </br>";
+            }
+        }
+        class BoBinh extends CanChien implements KetHop{
+            use SongRiu;
+            use AoLuoi;
+            public function DanhDap ()
+            {
+                echo "{$this->Get_ten()} tien hanh danh dap </br>";
+            }
+            public function KetLieu ()
+            {
+                echo "{$this->Get_ten()} tien hanh ket lieu </br>";
+            }
+            public function CuongThe ()
+            {
+                echo "{$this->Get_ten()} tien hanh cuong the </br>";
+            }
+            public function KetHopChieuThuc1(){
+                $this->CuongThe();
+                $this->DanhDap();
+            }
+            public function KetHopChieuThuc2(){
+                $this->DanhDap();
+                $this->KetLieu();
+            }
+        }
+        class PhapSu extends HoTro{
+            use GayPhep;
+            use AoChoangVai;
+            public function CauLua ()
+            {
+                echo "{$this->Get_ten()} tien hanh cau Lua </br>";
+            }
+            public function HoiPhuc ()
+            {
+                echo "{$this->Get_ten()} tien hanh hoi phuc </br>";
+            }
+            public function Thien ()
+            {
+                echo "{$this->Get_ten()} tien hanh thien </br>";
+            }
+        }
+        class TruTa extends HoTro{
+            use HuyetKiem;
+            use AoDa;
+            public function ThinhNoBongToi ()
+            {
+                echo "{$this->Get_ten()} tien hanh thinh no bong toi </br>";
+            }
+            public function ThinhNoMaCaRong ()
+            {
+                echo "{$this->Get_ten()} tien hanh thinh no ma ca rong </br>";
+            }
+            public function LaChan ()
+            {
+                echo "{$this->Get_ten()} tien hanh la chan </br>";
+            }
+        }
+        class TuSi extends HoTro{
+            use GayPhep;
+            use AoDa;
+            public function ThienThachLua ()
+            {
+                echo "{$this->Get_ten()} tien hanh thien thanh lua </br>";
+            }
+            public function MuaSaoNo ()
+            {
+                echo "{$this->Get_ten()} tien hanh mua sao no </br>";
+            }
+            public function ThienNhanThuat ()
+            {
+                echo "{$this->Get_ten()} tien hanh thien nhan thuat </br>";
+            }
+        }
+
+        $yasuo= new SatThu(18,'sat thu',1200,18,'Dia 1 nam');
+        $yone= new KyBinh(17,'Ky Binh',1200,17,'zeros V.V');
+        $malphite= new CanChien(16,'can chien',3000,16,'GAM Thua 2 tran :))');
+        $DanhSachNguoiChoi =array('Tai'=>$yasuo,'Nam'=>$yone,'bounmy'=>$malphite);
+
+        $syndra = new PhapSu(15,'Phap Su',1000,15,'showmaker');
+
+        NguoiChoi::ThemNguoiChoi($DanhSachNguoiChoi,$syndra,'tuan');
+        NguoiChoi::XuatThongTinToanBoNguoiChoi($DanhSachNguoiChoi);
+        NguoiChoi::CapDo($DanhSachNguoiChoi['Tai']);
+        $yasuo->KetHopChieuThuc1();
+        
+        ?>
+    </div>
+</body>
+</html>
